@@ -1,0 +1,386 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-container {
+  width: 95%;
+  max-width: 1200px;
+  height: 90vh;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.chat-header {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.status-dot.connecting {
+  background-color: #ffd700;
+}
+
+.status-dot.connected {
+  background-color: #00ff00;
+}
+
+.status-dot.disconnected {
+  background-color: #ff4444;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Main area */
+.chat-main {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Users panel */
+.users-panel {
+  width: 250px;
+  background: #f8f9fa;
+  border-right: 1px solid #e9ecef;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.users-panel h3 {
+  color: #495057;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.users-count {
+  color: #6c757d;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  background: #e9ecef;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.users-list {
+  list-style: none;
+}
+
+.users-list li {
+  padding: 0.5rem;
+  margin-bottom: 0.25rem;
+  background: white;
+  border-radius: 5px;
+  border-left: 3px solid #4facfe;
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+/* Messages area */
+.messages-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages-container {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background: #ffffff;
+}
+
+.welcome-message {
+  text-align: center;
+  color: #6c757d;
+  margin-top: 2rem;
+}
+
+.welcome-message h2 {
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+/* Message styles */
+.message {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border-radius: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message.user {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  margin-left: auto;
+  border-bottom-right-radius: 5px;
+}
+
+.message.other {
+  background: #f8f9fa;
+  color: #495057;
+  border-bottom-left-radius: 5px;
+  border-left: 3px solid #4facfe;
+}
+
+.message.server {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  color: #8b4513;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 20px;
+  font-style: italic;
+}
+
+.message.system {
+  background: #e9ecef;
+  color: #6c757d;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.message-header {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.message-time {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  margin-left: 0.5rem;
+}
+
+/* Input area */
+.input-area {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+}
+
+.username-form,
+.message-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.username-form input,
+.message-form input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 25px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.username-form input:focus,
+.message-form input:focus {
+  border-color: #4facfe;
+  box-shadow: 0 0 0 2px rgba(79, 172, 254, 0.2);
+}
+
+.username-form button,
+.message-form button {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.username-form button:hover,
+.message-form button:hover {
+  transform: translateY(-2px);
+}
+
+.username-form button:disabled,
+.message-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Footer */
+.chat-footer {
+  background: #f8f9fa;
+  padding: 0.5rem 1rem;
+  border-top: 1px solid #e9ecef;
+  font-size: 0.8rem;
+  color: #6c757d;
+  text-align: center;
+}
+
+.commands-info span {
+  margin: 0 0.25rem;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 10% auto;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.close:hover {
+  color: #000;
+}
+
+.help-content h3 {
+  color: #495057;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.help-content ul {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.help-content li {
+  margin-bottom: 0.25rem;
+  color: #6c757d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .chat-container {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .users-panel {
+    width: 200px;
+  }
+
+  .chat-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .message {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 600px) {
+  .users-panel {
+    display: none;
+  }
+
+  .chat-main {
+    flex-direction: column;
+  }
+}
+
+/* Scrollbar personalizado */
+.messages-container::-webkit-scrollbar,
+.users-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages-container::-webkit-scrollbar-track,
+.users-panel::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.messages-container::-webkit-scrollbar-thumb,
+.users-panel::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.messages-container::-webkit-scrollbar-thumb:hover,
+.users-panel::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

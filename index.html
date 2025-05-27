@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Web - Sistema de Mensajería</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Header -->
+        <div class="chat-header">
+            <h1>💬 Chat Web</h1>
+            <div class="connection-status" id="connectionStatus">
+                <span class="status-dot connecting"></span>
+                <span id="statusText">Conectando...</span>
+            </div>
+        </div>
+
+        <!-- Área principal del chat -->
+        <div class="chat-main">
+            <!-- Panel de usuarios -->
+            <div class="users-panel">
+                <h3>👥 Usuarios Conectados</h3>
+                <div class="users-count" id="usersCount">0 usuarios</div>
+                <ul class="users-list" id="usersList"></ul>
+            </div>
+
+            <!-- Área de mensajes -->
+            <div class="messages-area">
+                <div class="messages-container" id="messagesContainer">
+                    <div class="welcome-message">
+                        <h2>¡Bienvenido al Chat!</h2>
+                        <p>Conectándose al servidor...</p>
+                    </div>
+                </div>
+
+                <!-- Formulario de entrada -->
+                <div class="input-area">
+                    <!-- Formulario para nombre de usuario -->
+                    <div class="username-form" id="usernameForm">
+                        <input 
+                            type="text" 
+                            id="usernameInput" 
+                            placeholder="Ingresa tu nombre de usuario..."
+                            maxlength="20"
+                            autocomplete="off"
+                        >
+                        <button type="button" id="joinButton">Unirse al Chat</button>
+                    </div>
+
+                    <!-- Formulario para mensajes -->
+                    <div class="message-form" id="messageForm" style="display: none;">
+                        <input 
+                            type="text" 
+                            id="messageInput" 
+                            placeholder="Escribe tu mensaje..."
+                            maxlength="500"
+                            autocomplete="off"
+                        >
+                        <button type="button" id="sendButton">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer con información -->
+        <div class="chat-footer">
+            <div class="commands-info">
+                <strong>Comandos:</strong> 
+                <span>/help - Ayuda</span> | 
+                <span>/clear - Limpiar chat</span> | 
+                <span>/users - Ver usuarios</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de ayuda -->
+    <div class="modal" id="helpModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>📋 Ayuda del Chat</h2>
+            <div class="help-content">
+                <h3>Comandos disponibles:</h3>
+                <ul>
+                    <li><strong>/help</strong> - Mostrar esta ayuda</li>
+                    <li><strong>/clear</strong> - Limpiar el área de mensajes</li>
+                    <li><strong>/users</strong> - Mostrar lista de usuarios conectados</li>
+                </ul>
+                <h3>Características:</h3>
+                <ul>
+                    <li>Mensajes en tiempo real</li>
+                    <li>Notificaciones de entrada/salida</li>
+                    <li>Lista de usuarios actualizada</li>
+                    <li>Interfaz responsive</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="client.js"></script>
+</body>
+</html>
